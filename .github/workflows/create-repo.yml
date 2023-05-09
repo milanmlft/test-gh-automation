@@ -1,24 +1,24 @@
-name: Create Repo
-on: 
+name: Create repo
+
+on:
   workflow_dispatch:
     inputs:
-      repo-name: 
-        description: 'Name of the repository to be created'
+      repo-name:
+        description: What is the name of the repository?
         required: true
         default: ''
 
 jobs:
-  create-repository:
+  create_repo:
+    name: Create new GitHub repo
     runs-on: ubuntu-latest
-    name: Creating Organization Repository
+    env:
+      GITHUB_TOKEN:
+
     steps:
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-      - name: Creating GitHub Organization Repository
-        uses: repo-ctrl/create-repo-action@main 
-        id: create-repo
-        with:
-          repo-name: '${{ github.event.inputs.repo-name }}'
-          org-admin-token: '${{ secrets.ORG_ADMIN_TOKEN }}'
-      - name: Log URL to the repo
-        run: echo "The new repo is ${{ steps.create-repo.outputs.repo-url }}"
+        - name: Check out repo
+          uses: actions/checkout@v3
+        - name: Create repo
+          run: |
+            echo "Repo name:" ${{ env.INPUT_REPO-NAME }}
+            gh repo create ${{ env.INPUT_REPO-NAME }} --private
