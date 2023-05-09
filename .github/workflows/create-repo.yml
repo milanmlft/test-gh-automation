@@ -13,7 +13,7 @@ jobs:
     name: Create new GitHub repo
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN:
+      GH_TOKEN: ${{ github.token }}
 
     steps:
         - name: Check out repo
