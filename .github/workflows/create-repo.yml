@@ -20,5 +20,4 @@ jobs:
           uses: actions/checkout@v3
         - name: Create repo
           run: |
-            echo "Repo name:" ${{ env.INPUT_REPO-NAME }}
-            gh repo create ${{ env.INPUT_REPO-NAME }} --private
+            gh repo create ${{ github.event.inputs.repo-name }} --private
