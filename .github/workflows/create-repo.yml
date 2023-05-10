@@ -8,6 +8,8 @@ on:
         required: true
         default: ''
 
+permissions: write-all
+
 jobs:
   create_repo:
     name: Create new GitHub repo
